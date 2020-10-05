@@ -60,6 +60,7 @@ defined('BASEPATH') or die('Access Denied');
                 </div>
 
                 <div class="card-footer">
+                    <a href="<?php echo site_url('adjustment_tables') ?>" class="btn btn-warning font-weight-bold"><i class="fas fa-table"></i> ADJUSTMENT FORM LIST</a>
                     <button type="submit" class="btn btn-success font-weight-bold float-right"><i class="fas fa-check"></i> SUBMIT</button>
                     <?php echo form_close() ?>
                 </div>

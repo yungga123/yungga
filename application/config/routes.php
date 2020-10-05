@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 //Adjustment Form Controller
 $route['adjustment_submit'] = 'AdjustmentFormController/adjustment_form_validation';
+$route['adjustment_tables'] = 'AdjustmentFormController/adjustment_form_table';

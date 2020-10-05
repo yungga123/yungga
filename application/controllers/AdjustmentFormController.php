@@ -1,15 +1,17 @@
-<?php 
+<?php
 defined('BASEPATH') or die('Access Denied');
 
-class AdjustmentFormController extends CI_Controller {
-    
+class AdjustmentFormController extends CI_Controller
+{
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('AdjustmentFormModel');
     }
 
-    function validation_rules() {
+    function validation_rules()
+    {
         $rules = [
             [
                 'field' => 'date_request',
@@ -51,37 +53,34 @@ class AdjustmentFormController extends CI_Controller {
         return $rules;
     }
 
-    public function index() {
+    public function index()
+    {
         $data = [
             'title' => 'MIS Adjustment Request'
         ];
-        $this->load->view('templates/header',$data);
+        $this->load->view('templates/header', $data);
         $this->load->view('adjustment_form/adjustment_form');
         $this->load->view('templates/footer');
         $this->load->view('adjustment_form/script');
     }
 
-    public function adjustment_form_validation() {
+    public function adjustment_form_validation()
+    {
 
         $rules = $this->validation_rules();
 
         $rules = $this->form_validation->set_rules($rules);
 
-        if ($this->form_validation->run() == FALSE)
-
-        {
+        if ($this->form_validation->run() == FALSE) {
 
             $data = [
                 'title' => 'MIS Adjustment Request'
             ];
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header', $data);
             $this->load->view('adjustment_form/adjustment_form');
             $this->load->view('templates/footer');
             $this->load->view('adjustment_form/script');
-
-        }
-        else
-        {
+        } else {
             $data = [
                 'title' => 'Success!!!'
             ];
@@ -98,12 +97,24 @@ class AdjustmentFormController extends CI_Controller {
 
             $this->AdjustmentFormModel->insert($inputs);
 
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header', $data);
             $this->load->view('adjustment_form/success_page');
             $this->load->view('templates/footer');
             $this->load->view('adjustment_form/script');
         }
-
     }
-    
+
+    public function adjustment_form_table()
+    {
+        $results = $this->AdjustmentFormModel->select_all();
+        $data = [
+            'title' => 'Adjustment Form List',
+            'results' => $results
+        ];
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('adjustment_form/tables');
+        $this->load->view('templates/footer');
+        $this->load->view('adjustment_form/script');
+    }
 }
